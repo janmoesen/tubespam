@@ -6,6 +6,8 @@
 #
 # == INSTALL
 # Save it in ~/.irssi/scripts/ and do /script load tubespam.pl
+# OR
+# Save it in ~/.irssi/scripts/autorun and (re)start Irssi
 
 use strict;
 use Irssi;
