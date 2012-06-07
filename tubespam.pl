@@ -22,7 +22,6 @@ $VERSION = '0.1';
 	description => 'Show the title of linked YouTube movies.',
 	license     => 'GPL',
 	url         => 'http://jan.moesen.nu/',
-	changed     => 'Tue Jun 05 10:45:07 +0200 2012',
 );
 
 sub tubespam_process_message {
