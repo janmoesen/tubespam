@@ -31,9 +31,9 @@ sub tubespam_process_message {
 
 	return unless $target =~ /^#(wijs|catena|lolwut)/;
 	my $video_id = 0;
-	if ($msg =~ m/https?:\/\/youtu\.be\/(.+)(?:\?.*)?$/) {
+	if ($msg =~ m/https?:\/\/youtu\.be\/(.+?)\b/) {
 		$video_id = $1;
-	} elsif ($msg =~ m/https?:\/\/(?:www\.)youtube\.com\/.*\bv=([^&)]+)/) {
+	} elsif ($msg =~ m/https?:\/\/(?:www\.)youtube\.com\/.*\bv=(.+?)\b/) {
 		$video_id = $1;
 	}
 	return unless $video_id;
