@@ -11,7 +11,6 @@
 
 use strict;
 use Irssi;
-use JSON::XS;
 use LWP::Simple;
 use HTML::TokeParser;
 use vars qw($VERSION %IRSSI);
