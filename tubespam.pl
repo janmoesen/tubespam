@@ -28,6 +28,8 @@ sub tubespam_process_message {
 	my ($server, $msg, $target) = @_;
 
 	return unless $target =~ /^#(wijs|catena|lolwut)/;
+	return if $msg =~ /!spoiler/;
+
 	my $video_id = 0;
 	if ($msg =~ m/https?:\/\/youtu\.be\/([-\w]+)/) {
 		$video_id = $1;
