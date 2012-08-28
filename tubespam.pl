@@ -25,10 +25,9 @@ $VERSION = '0.1';
 );
 
 sub tubespam_process_message {
-	my ($server, $msg, $target) = @_;
+	my ($server, $msg, $target, $nick) = @_;
 
 	return unless $target =~ /^#(wijs|catena|lolwut)/;
-	return if $msg =~ /!spoiler/;
 
 	my $video_id = 0;
 	if ($msg =~ m/https?:\/\/youtu\.be\/([-\w]+)/) {
@@ -37,6 +36,14 @@ sub tubespam_process_message {
 		$video_id = $1;
 	}
 	return unless $video_id;
+
+	if ($msg =~ /!spoiler/) {
+		if ($video_id eq 'b2duli2jvGw') {
+			$server->command("kick $target $nick /sink $nick");
+		} else {
+			return;
+		}
+	}
 
 	my $video_url = "http://gdata.youtube.com/feeds/api/videos/$video_id?v=2&fields=title";
 	my $html = get($video_url); # Actually, this is XML, but it Should Work.
@@ -54,10 +61,10 @@ sub tubespam_process_message {
 Irssi::signal_add_last('message public', sub {
 	my ($server, $msg, $nick, $mask, $target) = @_;
 	Irssi::signal_continue($server, $msg, $nick, $mask, $target);
-	tubespam_process_message($server, $msg, $target);
+	tubespam_process_message($server, $msg, $target, $nick);
 });
 Irssi::signal_add_last('message own_public', sub {
 	my ($server, $msg, $target) = @_;
 	Irssi::signal_continue($server, $msg, $target);
-	tubespam_process_message($server, $msg, $target);
+	tubespam_process_message($server, $msg, $target, 'janmoesen');
 });
