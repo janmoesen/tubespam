@@ -13,6 +13,7 @@ use strict;
 use Irssi;
 use LWP::Simple;
 use HTML::TokeParser;
+use HTML::Entities;
 use vars qw($VERSION %IRSSI);
 
 $VERSION = '0.1';
@@ -54,7 +55,7 @@ sub tubespam_process_message {
 	return unless $title;
 
 	$title = "$title->[1]";
-	my $message = "YouTube video: \"$title\"";
+	my $message = decode_entities("YouTube video: \"$title\"");
 	$server->command("msg $target $message");
 }
 
