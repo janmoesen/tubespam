@@ -28,7 +28,7 @@ $VERSION = '0.1';
 sub tubespam_process_message {
 	my ($server, $msg, $target, $nick) = @_;
 
-	return unless $target =~ /^#(fronteers|catena|lolwut)/i;
+	return unless $target =~ /^#(fronteers|catena|lolwut)/;
 
 	my $video_id = 0;
 	if ($msg =~ m/https?:\/\/youtu\.be\/([-\w]+)/) {
